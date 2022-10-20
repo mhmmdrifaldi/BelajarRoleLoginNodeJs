@@ -6,9 +6,17 @@ import helmet from "helmet";
 import session from 'express-session'
 import models,{sequelize} from "./models/init-models";
 import routes from './routes/IndexRoute'
+import { dataSequelize } from './config/config-db'
+import SequelizeStore from 'connect-session-sequelize'
 
 const port = process.env.PORT || 3000;
 const app = express()
+
+const sessionStore = SequelizeStore(session.Store)
+
+const store = new sessionStore({
+	db: dataSequelize
+})
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -18,6 +26,7 @@ app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true,
+	store: store,
 	cookie: {
 		secure: 'auto'
 	}
@@ -30,10 +39,13 @@ app.use(async(req,res,next)=> {
   next()
 })
 
-//Masukkan Routes
-// app.use(config.URL_API + '/jenis_makanan', routes.JenisBarangRoute)
+// Masukkan Routes
+app.use('/users', routes.UserRoute)
+app.use(routes.AuthRoute)
 
 const dropDatabaseSync = false
+
+// store.sync()
 
 sequelize.sync({force : dropDatabaseSync}).then(async()=>{
   if (dropDatabaseSync) {

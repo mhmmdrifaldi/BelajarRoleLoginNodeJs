@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 import config from './config'
 
-const sequelize = new Sequelize(
+const dataSequelize = new Sequelize(
 	config.db_name,
 	config.db_username,
 	config.db_password,
@@ -10,9 +10,9 @@ const sequelize = new Sequelize(
 	}
 )
 
-sequelize
+dataSequelize
 	.authenticate()
 	.then(()=>console.log('connection has been estabilished successfully'))
 	.catch(err => console.log(err))
 
-export {sequelize}
+export {dataSequelize}

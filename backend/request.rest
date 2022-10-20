@@ -1,0 +1,54 @@
+// Create User
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+	"name": "Devrian Zahrani",
+	"email": "devrianzahrani@gmail.com",
+	"password": "123456",
+	"confpassword": "123456",
+	"role": "manager"
+}
+
+###
+// Get All Users
+GET http://localhost:3001/users
+
+###
+// Get One User
+GET http://localhost:3001/users/591f84bb-5195-4924-bc3e-8548501d8228
+
+###
+// Update User
+PUT http://localhost:3001/users/78db667b-77db-4445-afa4-0c989181c877
+Content-Type: application/json
+
+{
+	"name": "Devrian Zahrani",
+	"email": "devrianzahrani@gmail.com",
+	"password": "123456",
+	"confpassword": "123456",
+	"role": "manager"
+}
+
+###
+// Delete User
+DELETE http://localhost:3001/users/78db667b-77db-4445-afa4-0c989181c877
+
+###
+// Login
+POST http://localhost:3001/login
+Content-Type: application/json
+
+{
+	"email": "muhammadrifaldi410@gmail.com",
+	"password": "123456"
+}
+
+###
+// Me
+GET http://localhost:3001/me
+
+###
+// Logout
+DELETE http://localhost:3001/logout
