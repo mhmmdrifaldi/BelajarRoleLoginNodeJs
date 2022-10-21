@@ -41,6 +41,7 @@ app.use(async(req,res,next)=> {
 
 // Masukkan Routes
 app.use('/users', routes.UserRoute)
+app.use('/product', routes.ProductRoute)
 app.use(routes.AuthRoute)
 
 const dropDatabaseSync = false

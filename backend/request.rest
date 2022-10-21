@@ -52,3 +52,7 @@ GET http://localhost:3001/me
 ###
 // Logout
 DELETE http://localhost:3001/logout
+
+###
+// Get All Products
+GET http://localhost:3001/product
