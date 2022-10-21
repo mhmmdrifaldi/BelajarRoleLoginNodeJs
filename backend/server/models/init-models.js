@@ -17,12 +17,18 @@ const sequelize = new Sequelize(
 )
 
 const DataTypes = require("sequelize").DataTypes;
+const _Sessions = require("./Sessions");
+const _products = require("./products");
 const _users = require("./users");
 
 function initModels(sequelize) {
+  const Sessions = _Sessions(sequelize, DataTypes);
+  const products = _products(sequelize, DataTypes);
   const users = _users(sequelize, DataTypes);
 
   return {
+    Sessions,
+    products,
     users,
   };
 }
